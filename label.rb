@@ -15,4 +15,16 @@ class Label
     @items << item
     item.label = self
   end
+
+  def self.save_all(labels)
+    data = labels.map do |label|
+      {
+        id: label.id,
+        title: label.title,
+        color: label.color,
+        item_ids: label.items.map(&:id)
+      }
+    end
+    File.write('./data/labels.json', JSON.pretty_generate(data))
+  end
 end
