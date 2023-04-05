@@ -16,7 +16,15 @@ class Book < Item
   def can_be_archived?
     super || @cover_state == 'bad'
   end
-  
+
+  def self.load_all
+    return [] unless File.exist?('./data/books.json')
+
+    file = File.read('./data/books.json')
+    data = JSON.parse(file)
+    data.map { |book_data| Book.new(*book_data.values) }
+  end
+
   def self.save_all(books)
     data = books.map do |book|
       {
