@@ -1,8 +1,8 @@
+require 'json'
 class Author
-  attr_reader :id
-  attr_accessor :first_name, :last_name, :items
+  attr_accessor :id, :first_name, :last_name, :items
 
-  def initialize(id, first_name, last_name)
+  def initialize(first_name, last_name, id = rand(0..100))
     @id = id
     @first_name = first_name
     @last_name = last_name
@@ -21,9 +21,11 @@ class Author
     ObjectSpace.each_object(self).to_a
   end
 
-  def self.show_list_authors
-    all.each_with_index do |_author, index|
-      puts "#{index}] #{@first_name} #{last_name}"
+  def self.show_list
+    return puts 'No authors available' if all.empty?
+
+    all.each_with_index do |author, index|
+      puts "#{index}] #{author}" # {author.first_name} #{author.last_name}"
     end
   end
 end
