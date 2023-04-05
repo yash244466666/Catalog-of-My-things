@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'item'
 
 class Label
