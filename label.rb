@@ -16,6 +16,14 @@ class Label
     item.label = self
   end
 
+  def self.load_all
+    return [] unless File.exist?('./data/labels.json')
+
+    file = File.read('./data/labels.json')
+    data = JSON.parse(file)
+    data.map { |label_data| Label.new(*label_data.values) }
+  end
+
   def self.save_all(labels)
     data = labels.map do |label|
       {
