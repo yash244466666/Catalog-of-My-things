@@ -27,3 +27,12 @@ CREATE TABLE label (
   title VARCHAR(100) NOT NULL,
   color VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE books (
+  id INT PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  cover_state VARCHAR(255),
+  publish_date DATE NOT NULL,
+  archived BOOLEAN NOT NULL,
+  FOREIGN KEY(id) REFERENCES items(id)
+);
