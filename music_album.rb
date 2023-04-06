@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'item'
 
 class MusicAlbum < Item
@@ -15,5 +16,9 @@ class MusicAlbum < Item
     return true if super && @on_spotify == true
 
     false
+  end
+
+  def self.file_path
+    './data/music_albums.json'
   end
 end
