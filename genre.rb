@@ -19,6 +19,14 @@ class Genre
     './data/genres.json'
   end
 
+  def self.load_all
+    return [] unless File.exist?(file_path)
+
+    file = File.read(file_path)
+    data = JSON.parse(file)
+    data.map { |genre_data| Genre.new(*genre_data.values) }
+  end
+
   def self.save_all(genres)
     data = genres.map do |genre|
       {
