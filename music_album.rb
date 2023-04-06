@@ -21,4 +21,17 @@ class MusicAlbum < Item
   def self.file_path
     './data/music_albums.json'
   end
+
+  def self.save_all(music_albums)
+    data = music_albums.map do |album|
+      {
+        on_spotify: album.on_spotify,
+        genre: album.genre,
+        publish_date: album.publish_date,
+        source: album.source,
+        label: album.label
+      }
+    end
+    File.write(file_path, JSON.pretty_generate(data))
+  end
 end
