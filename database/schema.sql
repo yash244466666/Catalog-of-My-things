@@ -45,3 +45,8 @@ CREATE TABLE music_albums (
   genre_id INT REFERENCES genres(id),
   label_id INT REFERENCES labels(id), 
 );
+
+CREATE TABLE genres (
+  id INT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
