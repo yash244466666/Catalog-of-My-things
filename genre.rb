@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'item'
 
 class Genre
@@ -12,5 +13,9 @@ class Genre
   def add_item(item)
     @items << item
     item.genre = self
+  end
+
+  def self.file_path
+    './data/genres.json'
   end
 end
