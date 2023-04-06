@@ -21,3 +21,9 @@ CREATE TABLE games (
   last_played_at date,
   PRIMARY KEY (item_id)
 );
+
+CREATE TABLE label (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  color VARCHAR(100) NOT NULL
+);
