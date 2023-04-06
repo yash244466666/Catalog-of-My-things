@@ -18,4 +18,15 @@ class Genre
   def self.file_path
     './data/genres.json'
   end
+
+  def self.save_all(genres)
+    data = genres.map do |genre|
+      {
+        id: genre.id,
+        name: genre.name,
+        item_ids: genre.items.map(&:id)
+      }
+    end
+    File.write(file_path, JSON.pretty_generate(data))
+  end
 end
