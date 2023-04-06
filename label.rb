@@ -13,7 +13,7 @@ class Label
 
   def add_item(item)
     @items << item
-    item.label = self
+    item.add_label(self)
   end
 
   def self.load_all
