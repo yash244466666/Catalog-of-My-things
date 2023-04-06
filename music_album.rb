@@ -22,6 +22,14 @@ class MusicAlbum < Item
     './data/music_albums.json'
   end
 
+  def self.load_all
+    return [] unless File.exist?(file_path)
+
+    file = File.read(file_path)
+    data = JSON.parse(file)
+    data.map { |album_data| MusicAlbum.new(*album_data.values) }
+  end
+
   def self.save_all(music_albums)
     data = music_albums.map do |album|
       {
