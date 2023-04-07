@@ -15,7 +15,7 @@ describe Book do
     end
 
     it 'sets the publish date' do
-      expect(book.publish_date).to eq((publish_date))
+      expect(book.publish_date).to eq(publish_date)
     end
 
     it 'sets the publisher' do
