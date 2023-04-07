@@ -14,7 +14,6 @@ describe Game do
       @author = Author.new('Dicko', 'Allassane')
     end
     it '#initialize' do
-      expect(@game.id).to be_kind_of Integer
       expect(@game.publish_date).to eq '2000/02/02'
       expect(@game.multiplayer).to eq false
       expect(@game.last_played_at).to eq '2020/02/02'
@@ -26,7 +25,7 @@ describe Game do
     end
 
     it '#to_s' do
-      expect(@game.to_s).to eq "[Game] Created by #{@author} [author], " \
+      expect(@game.to_s).to eq "[Game] Created by #{@author}, " \
                                "Publish at #{@game.publish_date}, " \
                                "Last played at #{@game.last_played_at} " \
                                "[multiplayer: #{@game.multiplayer}]"

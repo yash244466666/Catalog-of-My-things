@@ -2,14 +2,14 @@ require 'json'
 require_relative 'item'
 
 class MusicAlbum < Item
-  attr_reader :on_spotify, :genre, :source, :label
+  attr_reader :on_spotify, :genre, :publish_date, :title
 
-  def initialize(on_spotify, genre, publish_date, source, label)
+  def initialize(title, on_spotify, genre, publish_date)
     super(publish_date)
     @on_spotify = on_spotify
     @genre = genre
-    @source = source
-    @label = label
+    @publish_date = publish_date
+    @title = title
   end
 
   def can_be_archived?
@@ -36,8 +36,7 @@ class MusicAlbum < Item
         on_spotify: album.on_spotify,
         genre: album.genre,
         publish_date: album.publish_date,
-        source: album.source,
-        label: album.label
+        title: album.title
       }
     end
     File.write(file_path, JSON.pretty_generate(data))

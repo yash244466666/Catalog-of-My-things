@@ -1,18 +1,19 @@
 require 'json'
 require './item'
+
 class Game < Item
   attr_reader :id
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(publish_date, multiplayer, last_played_at, id = rand(0..100))
+  def initialize(publish_date, multiplayer, last_played_at)
     super(publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
-    @id = id
+    @id = rand(0..100)
   end
 
   def to_s
-    "[Game] Created by #{author} [author], " \
+    "[Game] Created by #{author}, " \
       "Publish at #{publish_date}, " \
       "Last played at #{last_played_at} " \
       "[multiplayer: #{multiplayer}]"
@@ -35,7 +36,7 @@ class Game < Item
   end
 
   def self.save_all
-    return false unless File.exist?('./data/game.json')
+    # return false unless File.exist?('./data/game.json')
 
     list = []
     all.each do |game|
@@ -62,10 +63,10 @@ class Game < Item
       game_author&.add_item(game)
       game&.add_author(game_author)
 
-      # todo
-      # add label
-      # add source
-      # add genre
+      # # todo
+      # # add label
+      # # add source
+      # # add genre
     end
   end
 end

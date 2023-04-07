@@ -6,6 +6,8 @@ require_relative 'music_album'
 require_relative 'genre'
 
 class App
+  attr_reader :labels, :books, :genres, :music_albums
+
   def initialize
     @labels = []
     @books = []
@@ -16,27 +18,29 @@ class App
   end
 
   def list_books
-    puts
-    puts 'Books:'
-    @books.each do |book|
-      puts "Title: #{book.title}, Publisher: #{book.publisher},
-      Cover State: #{book.cover_state}, Published: #{book.publish_date},
-      Archived: #{book.archived || (book.cover_state == 'bad')}"
+    Book.load_all
+    if @books.empty?
+      puts 'books not found'
+    else
+      puts 'List Books:'
+      @books.each do |book|
+        puts "Title: #{book.title}, Publisher: #{book.publisher}," \
+             "Cover State: #{book.cover_state}, Published: #{book.publish_date}," \
+             "Archived: #{book.archived || (book.cover_state == 'bad')}"
+      end
     end
-    puts
   end
 
   def list_labels
-    puts
-    puts 'Labels:'
-    @labels.each do |label|
-      puts "Title: #{label.title}, Color: #{label.color}"
-      puts 'Items:'
-      label.items.each do |item|
-        puts "#{item.class}: #{item.title}"
+    if @labels.empty?
+      puts 'labels not found'
+    else
+      puts 'List Labels:'
+      @labels.each do |label|
+        puts "Title: #{label.title}," \
+             "Color: #{label.color}"
       end
     end
-    puts
   end
 
   def add_book
@@ -50,21 +54,19 @@ class App
     publish_date = gets.chomp
     puts 'Enter author:'
     author = gets.chomp
-    puts 'Enter label title:'
-    label_title = gets.chomp
-    puts 'Enter label color:'
-    label_color = gets.chomp
-    book = Book.new(title, publish_date, publisher, cover_state)
+    book = Book.new(title, publisher, cover_state, publish_date)
     book.add_author(author)
     @books << book
-    label = add_label(label_title, label_color)
-    label.add_item(book)
     book
   end
 
-  def add_label(title, color)
+  def add_label
+    puts 'Enter label title:'
+    title = gets.chomp
+    puts 'Enter label color:'
+    color = gets.chomp
     label = Label.new(title, color)
-    @labels << label
+    @labels.push(label)
     label
   end
 
@@ -76,8 +78,42 @@ class App
     Author.show_list
   end
 
+  def select_author
+    puts "\nSelect the author information"
+    puts 'First Name: '
+    first_name = gets.chomp.to_s
+    puts 'Last Name: '
+    last_name = gets.chomp.to_s
+    Author.new(first_name, last_name)
+  end
+
+  def multiplayer_status
+    puts 'Multiplayer? (Y/N): '
+    multiplayer = gets.chomp
+    if %w[Y y].include?(multiplayer)
+      true
+    elsif %w[N n].include?(multiplayer)
+      false
+    else
+      puts "Invalid value detected: #{mutliplayer}"
+    end
+  end
+
   def add_game
-    Game.create
+    author = select_author
+    puts 'Publish Date: '
+    publish_date = gets.chomp
+    puts 'Select lable '
+    label = add_label
+    is_multiplayer = multiplayer_status
+    puts 'Date last played: '
+    last_played = gets.chomp
+    new_game = Game.new(publish_date, is_multiplayer, last_played)
+    new_game.add_label(label)
+    new_game.add_author(author)
+    @games << new_game
+
+    puts 'Game and Author created succcessfully!'
   end
 
   def add_genre(name)
@@ -95,11 +131,14 @@ class App
     publish_date = gets.chomp
     puts 'Enter music album genre name:'
     genre_name = gets.chomp
-
-    music_album = MusicAlbum.new(title, on_spotify, publish_date)
-    music_album.add_genre(genre_name)
-    add_genre(genre_name)
+    genre = @genres.find { |g| g.name == genre_name }
+    if genre.nil?
+      genre = Genre.new(genre_name)
+      @genres << genre
+    end
+    music_album = MusicAlbum.new(title, on_spotify, genre_name, publish_date)
     @music_albums << music_album
+
     music_album
   end
 
@@ -126,13 +165,13 @@ class App
     end
   end
 
-  def exit
-    @labels.save_all
-    @books.save_all
-    @genres.save_all
-    @music_albums.save_all
-    @games.save_all
-    @authors.save_all
+  def close_app
+    Book.save_all(@books)
+    Author.save_all
+    Game.save_all
+    Genre.save_all(@genres)
+    Label.save_all(@labels)
+    MusicAlbum.save_all(@music_albums)
     puts 'Thanks for using the app!'
   end
 end
