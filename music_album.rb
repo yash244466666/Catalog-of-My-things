@@ -2,7 +2,7 @@ require 'json'
 require_relative 'item'
 
 class MusicAlbum < Item
-  attr_reader :on_spotify, :genre, :publish_date, :title
+  attr_accessor :on_spotify, :genre, :publish_date, :title
 
   def initialize(title, on_spotify, genre, publish_date)
     super(publish_date)
