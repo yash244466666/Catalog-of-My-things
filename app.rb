@@ -15,11 +15,10 @@ class App
     @music_albums = []
     @games = []
     @authors = []
-   
   end
 
   def list_books
-     Book.load_all
+    Book.load_all
     if @books.empty?
       puts 'books not found'
     else

@@ -18,6 +18,7 @@ class Book < Item
 
   def self.load_all
     return [] unless File.exist?('./data/books.json')
+
     file = File.read('./data/books.json')
     data = JSON.parse(file)
     data.map { |book_data| Book.new(*book_data.values) }
