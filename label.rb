@@ -4,8 +4,8 @@ require_relative 'item'
 class Label
   attr_reader :id, :title, :color, :items
 
-  def initialize(id, title, color)
-    @id = id
+  def initialize(title, color)
+    @id = Random.rand(1..1000)
     @title = title
     @color = color
     @items = []
@@ -16,10 +16,14 @@ class Label
     item.add_label(self)
   end
 
-  def self.load_all
-    return [] unless File.exist?('./data/labels.json')
+  def self.file_path
+    './data/labels.json'
+  end
 
-    file = File.read('./data/labels.json')
+  def self.load_all
+    return [] unless File.exist?(file_path)
+
+    file = File.read(file_path)
     data = JSON.parse(file)
     data.map { |label_data| Label.new(*label_data.values) }
   end
@@ -29,10 +33,9 @@ class Label
       {
         id: label.id,
         title: label.title,
-        color: label.color,
-        item_ids: label.items.map(&:id)
+        color: label.color
       }
     end
-    File.write('./data/labels.json', JSON.pretty_generate(data))
+    File.write(file_path, JSON.pretty_generate(data))
   end
 end

@@ -1,10 +1,11 @@
 require 'json'
 
 class Author
-  attr_accessor :id, :first_name, :last_name, :items
+  attr_accessor :first_name, :last_name, :items
+  attr_reader :id
 
-  def initialize(first_name, last_name, id = rand(0..100))
-    @id = id
+  def initialize(first_name, last_name)
+    @id = rand(0..100)
     @first_name = first_name
     @last_name = last_name
     @items = []
@@ -30,21 +31,23 @@ class Author
     end
   end
 
-  def self.save_all
-    return unless File.exist?('./data/authors.json')
+  def self.file_path
+    './data/authors.json'
+  end
 
+  def self.save_all
     list = []
     all.each do |author|
       list << { id: author.id, first_name: author.first_name, last_name: author.last_name }
     end
-    File.write('./data/authors.json', JSON.pretty_generate(list))
+    File.write(file_path, JSON.pretty_generate(list))
   end
 
   def self.load_all
-    return false unless File.exist?('./data/authors.json')
-    return false if File.empty?('./data/authors.json')
+    return false unless File.exist?(file_path)
+    return false if File.empty?(file_path)
 
-    list_authors = JSON.parse(File.read('./data/authors.json'))
+    list_authors = JSON.parse(File.read(file_path))
     list_authors.each do |author|
       new(author['first_name'], author['last_name'], author['id'])
     end
