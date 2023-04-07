@@ -49,7 +49,7 @@ class App
     puts 'Enter publisher:'
     publisher = gets.chomp
     puts 'Enter cover state (good/bad):'
-    cover_state = gets.chomp.downcase == 'bad'
+    cover_state = gets.chomp.downcase == 'bad' ? 'bad' : 'good'
     puts 'Enter publish date (yyyy-mm-dd):'
     publish_date = gets.chomp
     puts 'Enter author:'
