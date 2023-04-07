@@ -7,11 +7,10 @@ RSpec.describe Label do
   let(:label_color) { 'Label Color' }
   let(:item_publish_date) { '2021-01-01' }
   let(:item) { Item.new(item_publish_date) }
-  subject(:label) { described_class.new(label_id, label_title, label_color) }
+  subject(:label) { described_class.new(label_title, label_color) }
 
   describe '#initialize' do
     it 'creates a new label with the specified attributes' do
-      expect(label.id).to eq(label_id)
       expect(label.title).to eq(label_title)
       expect(label.color).to eq(label_color)
       expect(label.items).to be_empty

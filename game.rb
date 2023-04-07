@@ -13,7 +13,7 @@ class Game < Item
   end
 
   def to_s
-    "[Game] Created by #{author} , " \
+    "[Game] Created by #{author}, " \
       "Publish at #{publish_date}, " \
       "Last played at #{last_played_at} " \
       "[multiplayer: #{multiplayer}]"
