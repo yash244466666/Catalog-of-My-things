@@ -22,7 +22,7 @@ describe Genre do
     let(:title) { 'War' }
     let(:on_spotify) { true }
     let(:publish_date) { '2010-01-01' }
-    let(:genre) {'rnb'}
+    let(:genre) { 'rnb' }
     let(:music_album) { MusicAlbum.new(title, on_spotify, genre, publish_date) }
 
     it 'Adds an item to the genre item array' do
