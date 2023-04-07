@@ -18,7 +18,7 @@ class App
   end
 
   def list_books
-    Book.load_all
+    @books = Book.load_all
     if @books.empty?
       puts 'books not found'
     else
