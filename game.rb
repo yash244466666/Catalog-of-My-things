@@ -1,5 +1,6 @@
 require 'json'
 require './item'
+require './author'
 
 class Game < Item
   attr_reader :id
@@ -13,8 +14,7 @@ class Game < Item
   end
 
   def to_s
-    "[Game] Created by #{author}, " \
-      "Publish at #{publish_date}, " \
+    "Publish at #{publish_date}, " \
       "Last played at #{last_played_at} " \
       "[multiplayer: #{multiplayer}]"
   end
@@ -26,6 +26,8 @@ class Game < Item
   def self.show_list
     return puts 'No game available' if all.empty?
 
+    load_all
+
     all.each_with_index do |game, index|
       puts "#{index}] #{game}"
     end
@@ -36,14 +38,12 @@ class Game < Item
   end
 
   def self.save_all
-    # return false unless File.exist?('./data/game.json')
-
     list = []
     all.each do |game|
-      # how to save the authors, the labels, the genre etc...
-      data = { id: game.id, author_id: game.author.id,
-               # source_id: @source&.id, label_id: @label&.id, genre_id: @genre.id,
-               multiplayer: game.multiplayer, last_played_at: game.last_played_at }
+      data = { author_id: game.id,
+               multiplayer: game.multiplayer,
+               last_played_at: game.last_played_at,
+               publish_date: game.publish_date }
       list << data
     end
     File.write('./data/game.json', JSON.pretty_generate(list))
@@ -56,17 +56,7 @@ class Game < Item
 
     list = JSON.parse(File.read('./data/game.json'))
     list.each do |data|
-      game = new(data['publish_date'], data['multiplayer'], data['last_played_at'], data['id'])
-
-      # add authors
-      game_author = Author.all.find { |author| author.id == data['author_id'] }
-      game_author&.add_item(game)
-      game&.add_author(game_author)
-
-      # # todo
-      # # add label
-      # # add source
-      # # add genre
+      new(data['publish_date'], data['multiplayer'], data['last_played_at']).instance_variable_set(:@id, data['id'])
     end
   end
 end

@@ -18,26 +18,27 @@ class App
   end
 
   def list_books
-    Book.load_all
     if @books.empty?
       puts 'books not found'
     else
       puts 'List Books:'
+      @books = Book.load_all
       @books.each do |book|
-        puts "Title: #{book.title}, Publisher: #{book.publisher}," \
-             "Cover State: #{book.cover_state}, Published: #{book.publish_date}," \
+        puts "Title: #{book.title}, Publisher: #{book.publisher}, " \
+             "Cover State: #{book.cover_state}, Published: #{book.publish_date}, " \
              "Archived: #{book.archived || (book.cover_state == 'bad')}"
       end
     end
   end
 
   def list_labels
+    @labels = Label.load_all
     if @labels.empty?
       puts 'labels not found'
     else
       puts 'List Labels:'
       @labels.each do |label|
-        puts "Title: #{label.title}," \
+        puts "Title: #{label.title}, " \
              "Color: #{label.color}"
       end
     end
@@ -49,7 +50,7 @@ class App
     puts 'Enter publisher:'
     publisher = gets.chomp
     puts 'Enter cover state (good/bad):'
-    cover_state = gets.chomp.downcase == 'bad'
+    cover_state = gets.chomp.downcase == 'bad' ? 'bad' : 'good'
     puts 'Enter publish date (yyyy-mm-dd):'
     publish_date = gets.chomp
     puts 'Enter author:'
@@ -135,6 +136,7 @@ class App
     if genre.nil?
       genre = Genre.new(genre_name)
       @genres << genre
+      Genre.save_all(@genres)
     end
     music_album = MusicAlbum.new(title, on_spotify, genre_name, publish_date)
     @music_albums << music_album
@@ -147,6 +149,7 @@ class App
       puts 'There are no genres yet.'
     else
       puts 'All genres:'
+      @genres = Genre.load_all
       @genres.each do |genre|
         puts "Genre: #{genre.name}"
       end
@@ -158,9 +161,12 @@ class App
       puts 'There are no music albums yet.'
     else
       puts 'All music albums:'
+      @music_albums = MusicAlbum.load_all
       @music_albums.each do |music_album|
-        puts "Title: #{music_album.title}, Spotify: #{music_album.on_spotify},
-        Published: #{music_album.publish_date}, Archived: #{music_album.archived}"
+        puts "Title: #{music_album.title}, " \
+             "Spotify: #{music_album.on_spotify}, " \
+             "Published: #{music_album.publish_date}, " \
+             "Archived: #{music_album.archived}"
       end
     end
   end
@@ -169,7 +175,6 @@ class App
     Book.save_all(@books)
     Author.save_all
     Game.save_all
-    Genre.save_all(@genres)
     Label.save_all(@labels)
     MusicAlbum.save_all(@music_albums)
     puts 'Thanks for using the app!'

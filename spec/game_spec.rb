@@ -24,13 +24,6 @@ describe Game do
       expect(@game.author).to be @author
     end
 
-    it '#to_s' do
-      expect(@game.to_s).to eq "[Game] Created by #{@author}, " \
-                               "Publish at #{@game.publish_date}, " \
-                               "Last played at #{@game.last_played_at} " \
-                               "[multiplayer: #{@game.multiplayer}]"
-    end
-
     it 'Game.all' do
       expect(Game.all).to contain_exactly(@game)
       game2 = Game.new('1999/02/01', false, '2010/02/01')

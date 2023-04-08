@@ -22,7 +22,7 @@ CREATE TABLE games (
   PRIMARY KEY (item_id)
 );
 
-CREATE TABLE label (
+CREATE TABLE labels (
   id SERIAL PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
   color VARCHAR(100) NOT NULL
