@@ -31,7 +31,6 @@ class Label
   def self.save_all(labels)
     data = labels.map do |label|
       {
-        id: label.id,
         title: label.title,
         color: label.color
       }

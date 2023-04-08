@@ -24,6 +24,7 @@ class Author
   end
 
   def self.show_list
+    load_all
     return puts 'No authors available' if all.empty?
 
     all.each_with_index do |author, index|
@@ -49,7 +50,7 @@ class Author
 
     list_authors = JSON.parse(File.read(file_path))
     list_authors.each do |author|
-      new(author['first_name'], author['last_name'], author['id'])
+      new(author['first_name'], author['last_name']).instance_variable_set(:@id, author['id'])
     end
   end
 end

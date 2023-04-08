@@ -24,13 +24,12 @@ class Genre
 
     file = File.read(file_path)
     data = JSON.parse(file)
-    data.map { |genre_data| Genre.new(*genre_data.values) }
+    data.map { |genre_data| Genre.new(genre_data['name']) }
   end
 
   def self.save_all(genres)
     data = genres.map do |genre|
       {
-        id: genre.id,
         name: genre.name
       }
     end
