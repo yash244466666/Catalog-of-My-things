@@ -10,15 +10,21 @@ class App
 
   def initialize
     @labels = []
+    Label.load_all
     @books = []
+    Book.load_all
     @genres = []
+    Genre.load_all
     @music_albums = []
+    MusicAlbum.load_all
     @games = []
     @authors = []
   end
 
   def list_books
+    if @books.empty?
     @books = Book.load_all
+    end
     if @books.empty?
       puts 'books not found'
     else
@@ -34,7 +40,9 @@ class App
   end
 
   def list_labels
+      if @labels.empty?
     @labels = Label.load_all
+    end
     if @labels.empty?
       puts 'labels not found'
     else
@@ -59,10 +67,10 @@ class App
     author = gets.chomp
     book = Book.new(title, publisher, publish_date, cover_state)
     book.add_author(author)
-    @books = Book.load_all
-    @books.push(book)
+    @books << book
     puts 'Book added successfully'
-    book
+    # @books = Book.load_all
+    return book
   end
 
   def add_label
@@ -154,7 +162,9 @@ class App
   end
 
   def list_all_genres
-    @genres = Genre.load_all
+    if @genres.empty?
+      @genres = Genre.load_all
+    end
     if @genres.empty?
       puts 'There are no genres yet.'
     else
@@ -166,7 +176,9 @@ class App
   end
 
   def list_all_music_albums
-    @music_albums = MusicAlbum.load_all
+    if @music_albums.empty?
+      @music_albums = MusicAlbum.load_all
+    end
     if @music_albums.empty?
       puts 'There are no music albums yet.'
     else
