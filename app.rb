@@ -73,6 +73,7 @@ class App
     label = Label.new(title, color)
     @labels = Label.load_all
     @labels.push(label)
+    puts 'Label added successfully'
     label
   end
 
@@ -142,12 +143,12 @@ class App
     genre = @genres.find { |g| g.name == genre_name }
     if genre.nil?
       genre = Genre.new(genre_name)
-      @genres.push(genre)
+      @genres << genre
       Genre.save_all(@genres)
     end
     music_album = MusicAlbum.new(title, on_spotify, genre_name, publish_date)
     @music_albums = MusicAlbum.load_all
-    @music_albums.push(music_album)
+    @music_albums << music_album
     puts 'Added music album successfully'
     music_album
   end
