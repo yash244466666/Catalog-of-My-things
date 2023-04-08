@@ -144,13 +144,13 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Yash**
+👨‍🚀 **Yash**
 
 - GitHub: [Yash](https://github.com/yash244466666)
 - LinkedIn: [Yash Solo](https://www.linkedin.com/in/yash-solo)
 - Twitter: [Yash Solo](https://twitter.com/yash_solo000)
 
-👤 **Sabi Mantock**
+👨‍🚀 **Sabi Mantock**
 
 - GitHub: [Sabi Mantock](https://github.com/SabiMantock)
 - Twitter: [Sabi Mantock](https://twitter.com/IamSabiMantock)
