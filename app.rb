@@ -10,29 +10,35 @@ class App
 
   def initialize
     @labels = []
+    Label.load_all
     @books = []
+    Book.load_all
     @genres = []
+    Genre.load_all
     @music_albums = []
+    MusicAlbum.load_all
     @games = []
     @authors = []
   end
 
   def list_books
+    @books = Book.load_all if @books.empty?
     if @books.empty?
       puts 'books not found'
     else
       puts 'List Books:'
-      @books = Book.load_all
       @books.each do |book|
+        puts
         puts "Title: #{book.title}, Publisher: #{book.publisher}, " \
-             "Cover State: #{book.cover_state}, Published: #{book.publish_date}, " \
+             "Published: #{book.publish_date}, " \
+             "Cover_State: #{book.cover_state}, " \
              "Archived: #{book.archived || (book.cover_state == 'bad')}"
       end
     end
   end
 
   def list_labels
-    @labels = Label.load_all
+    @labels = Label.load_all if @labels.empty?
     if @labels.empty?
       puts 'labels not found'
     else
@@ -55,9 +61,11 @@ class App
     publish_date = gets.chomp
     puts 'Enter author:'
     author = gets.chomp
-    book = Book.new(title, publisher, cover_state, publish_date)
+    book = Book.new(title, publisher, publish_date, cover_state)
     book.add_author(author)
     @books << book
+    puts 'Book added successfully'
+    # @books = Book.load_all
     book
   end
 
@@ -67,7 +75,9 @@ class App
     puts 'Enter label color:'
     color = gets.chomp
     label = Label.new(title, color)
+    @labels = Label.load_all
     @labels.push(label)
+    puts 'Label added successfully'
     label
   end
 
@@ -112,14 +122,16 @@ class App
     new_game = Game.new(publish_date, is_multiplayer, last_played)
     new_game.add_label(label)
     new_game.add_author(author)
-    @games << new_game
-
+    @games = Game.load_all
+    @games.push(new_game)
     puts 'Game and Author created succcessfully!'
+    new_game
   end
 
   def add_genre(name)
     genre = Genre.new(name)
-    @genres << genre
+    @genres = Genre.load_all
+    @genres.push(genre)
     genre
   end
 
@@ -139,17 +151,18 @@ class App
       Genre.save_all(@genres)
     end
     music_album = MusicAlbum.new(title, on_spotify, genre_name, publish_date)
+    @music_albums = MusicAlbum.load_all
     @music_albums << music_album
-
+    puts 'Added music album successfully'
     music_album
   end
 
   def list_all_genres
+    @genres = Genre.load_all if @genres.empty?
     if @genres.empty?
       puts 'There are no genres yet.'
     else
       puts 'All genres:'
-      @genres = Genre.load_all
       @genres.each do |genre|
         puts "Genre: #{genre.name}"
       end
@@ -157,14 +170,15 @@ class App
   end
 
   def list_all_music_albums
+    @music_albums = MusicAlbum.load_all if @music_albums.empty?
     if @music_albums.empty?
       puts 'There are no music albums yet.'
     else
       puts 'All music albums:'
-      @music_albums = MusicAlbum.load_all
       @music_albums.each do |music_album|
         puts "Title: #{music_album.title}, " \
              "Spotify: #{music_album.on_spotify}, " \
+             "Genre: #{music_album.genre}, " \
              "Published: #{music_album.publish_date}, " \
              "Archived: #{music_album.archived}"
       end

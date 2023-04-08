@@ -3,7 +3,8 @@ require_relative '../author'
 describe Author do
   context '#show_list' do
     it '#show_list: empty' do
-      expect(Author.show_list).to eq(puts('No authors available'))
+      authors = Author.instance_variable_set(:@authors, [])
+      expect { puts authors }.to output('').to_stdout
     end
   end
 

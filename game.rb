@@ -24,9 +24,8 @@ class Game < Item
   end
 
   def self.show_list
-    return puts 'No game available' if all.empty?
-
     load_all
+    return puts 'No game available' if all.empty?
 
     all.each_with_index do |game, index|
       puts "#{index}] #{game}"

@@ -33,10 +33,10 @@ class MusicAlbum < Item
   def self.save_all(music_albums)
     data = music_albums.map do |album|
       {
+        title: album.title,
         on_spotify: album.on_spotify,
         genre: album.genre,
-        publish_date: album.publish_date,
-        title: album.title
+        publish_date: album.publish_date
       }
     end
     File.write(file_path, JSON.pretty_generate(data))
