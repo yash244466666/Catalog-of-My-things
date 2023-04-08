@@ -22,9 +22,7 @@ class App
   end
 
   def list_books
-    if @books.empty?
-    @books = Book.load_all
-    end
+    @books = Book.load_all if @books.empty?
     if @books.empty?
       puts 'books not found'
     else
@@ -40,9 +38,7 @@ class App
   end
 
   def list_labels
-      if @labels.empty?
-    @labels = Label.load_all
-    end
+    @labels = Label.load_all if @labels.empty?
     if @labels.empty?
       puts 'labels not found'
     else
@@ -70,7 +66,7 @@ class App
     @books << book
     puts 'Book added successfully'
     # @books = Book.load_all
-    return book
+    book
   end
 
   def add_label
@@ -162,9 +158,7 @@ class App
   end
 
   def list_all_genres
-    if @genres.empty?
-      @genres = Genre.load_all
-    end
+    @genres = Genre.load_all if @genres.empty?
     if @genres.empty?
       puts 'There are no genres yet.'
     else
@@ -176,9 +170,7 @@ class App
   end
 
   def list_all_music_albums
-    if @music_albums.empty?
-      @music_albums = MusicAlbum.load_all
-    end
+    @music_albums = MusicAlbum.load_all if @music_albums.empty?
     if @music_albums.empty?
       puts 'There are no music albums yet.'
     else

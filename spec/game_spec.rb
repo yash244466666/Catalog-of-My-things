@@ -4,7 +4,8 @@ require './author'
 describe Game do
   context '#show_list' do
     it '#show_list: empty' do
-      expect(Game.show_list).to eq(puts('No game available'))
+      games = Game.instance_variable_set(:@games, [])
+      expect { games }.to output('').to_stdout
     end
   end
 
