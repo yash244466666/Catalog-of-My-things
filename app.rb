@@ -24,8 +24,10 @@ class App
     else
       puts 'List Books:'
       @books.each do |book|
+        puts
         puts "Title: #{book.title}, Publisher: #{book.publisher}, " \
-             "Cover State: #{book.cover_state}, Published: #{book.publish_date}, " \
+             "Published: #{book.publish_date}, " \
+             "Cover_State: #{book.cover_state}, " \
              "Archived: #{book.archived || (book.cover_state == 'bad')}"
       end
     end
@@ -55,9 +57,11 @@ class App
     publish_date = gets.chomp
     puts 'Enter author:'
     author = gets.chomp
-    book = Book.new(title, publisher, cover_state, publish_date)
+    book = Book.new(title, publisher, publish_date, cover_state)
     book.add_author(author)
-    @books << book
+    @books = Book.load_all
+    @books.push(book)
+    puts 'Book added successfully'
     book
   end
 
@@ -67,6 +71,7 @@ class App
     puts 'Enter label color:'
     color = gets.chomp
     label = Label.new(title, color)
+    @labels = Label.load_all
     @labels.push(label)
     label
   end
@@ -112,14 +117,16 @@ class App
     new_game = Game.new(publish_date, is_multiplayer, last_played)
     new_game.add_label(label)
     new_game.add_author(author)
-    @games << new_game
-
+    @games = Game.load_all
+    @games.push(new_game)
     puts 'Game and Author created succcessfully!'
+    new_game
   end
 
   def add_genre(name)
     genre = Genre.new(name)
-    @genres << genre
+    @genres = Genre.load_all
+    @genres.push(genre)
     genre
   end
 
@@ -135,12 +142,13 @@ class App
     genre = @genres.find { |g| g.name == genre_name }
     if genre.nil?
       genre = Genre.new(genre_name)
-      @genres << genre
+      @genres.push(genre)
       Genre.save_all(@genres)
     end
     music_album = MusicAlbum.new(title, on_spotify, genre_name, publish_date)
-    @music_albums << music_album
-
+    @music_albums = MusicAlbum.load_all
+    @music_albums.push(music_album)
+    puts 'Added music album successfully'
     music_album
   end
 
@@ -165,6 +173,7 @@ class App
       @music_albums.each do |music_album|
         puts "Title: #{music_album.title}, " \
              "Spotify: #{music_album.on_spotify}, " \
+             "Genre: #{music_album.genre}, " \
              "Published: #{music_album.publish_date}, " \
              "Archived: #{music_album.archived}"
       end

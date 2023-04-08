@@ -7,7 +7,7 @@ describe Book do
   let(:publish_date) { '1925-04-10' }
   let(:publisher) { "Charles Scribner's Sons" }
   let(:cover_state) { 'good' }
-  subject(:book) { described_class.new(title, publish_date, publisher, cover_state) }
+  subject(:book) { described_class.new(title, publisher, publish_date, cover_state) }
 
   describe '#initialize' do
     it 'sets the title' do

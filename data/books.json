@@ -1,8 +1,8 @@
 [
   {
-    "title": "Hans Solo",
-    "publisher": "good",
-    "publish_date": "disney",
-    "cover_state": "2006-05-26"
+    "title": "someauthor",
+    "publisher": "",
+    "publish_date": "sdf",
+    "cover_state": "good"
   }
 ]
