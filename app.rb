@@ -18,11 +18,11 @@ class App
   end
 
   def list_books
+    @books = Book.load_all
     if @books.empty?
       puts 'books not found'
     else
       puts 'List Books:'
-      @books = Book.load_all
       @books.each do |book|
         puts "Title: #{book.title}, Publisher: #{book.publisher}, " \
              "Cover State: #{book.cover_state}, Published: #{book.publish_date}, " \
@@ -145,11 +145,11 @@ class App
   end
 
   def list_all_genres
+    @genres = Genre.load_all
     if @genres.empty?
       puts 'There are no genres yet.'
     else
       puts 'All genres:'
-      @genres = Genre.load_all
       @genres.each do |genre|
         puts "Genre: #{genre.name}"
       end
@@ -157,11 +157,11 @@ class App
   end
 
   def list_all_music_albums
+    @music_albums = MusicAlbum.load_all
     if @music_albums.empty?
       puts 'There are no music albums yet.'
     else
       puts 'All music albums:'
-      @music_albums = MusicAlbum.load_all
       @music_albums.each do |music_album|
         puts "Title: #{music_album.title}, " \
              "Spotify: #{music_album.on_spotify}, " \

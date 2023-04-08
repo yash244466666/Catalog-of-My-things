@@ -76,14 +76,14 @@ In order to run this project you need:
 - To have rail installed
 
 ```sh
-  cd your-folder
+  cd Catalog-of-My-things
   gem install rails
 ```
 
 - To have rail installed
 
 ```sh
-  cd your-folder
+  cd Catalog-of-My-things
   gem install rspec
 ```
 
@@ -94,7 +94,7 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```sh
-  cd your-folder
+  cd Catalog-of-My-things
   git clone https://github.com/yash244466666/Catalog-of-My-things.git
 ```
 
@@ -113,7 +113,7 @@ Install this project with:
 - To run the project, execute the following command:
 
 ```sh
-  ruby index.rb
+  ruby main.rb
 ```
 
 - You can you own code, create your own tables, columns, and queries using this template
