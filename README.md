@@ -74,6 +74,7 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 - To have rail installed
+- bundle install
 
 ```sh
   cd Catalog-of-My-things
