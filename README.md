@@ -67,11 +67,11 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To get a local copy up and running, follow these steps.
+If you would like to get a local copy up and running, please follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
+To run this project you need:
 
 - To have rail installed
 - bundle install
