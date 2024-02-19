@@ -27,7 +27,7 @@
 
 # 📖 Catalog-my-of-things <a name="about-project"></a>
 
-**Catalog-my-of-things** is a terminal console app project that helps the user to keep track of their items. Users can also create a SQL database of objects by using `schema.sql.` A console app is available to create and list items dynamically.
+**Catalog-my-of-things** is a terminal console app project that helps users keep track of their items. Users can also create an SQL database of objects by using `schema.sql.` A console app is available to create and list items dynamically.
 
 ## 🛠 Built With <a name="built-with"></a>
 
