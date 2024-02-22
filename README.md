@@ -103,11 +103,11 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-- To use this project make sure to install [postgress](https://www.postgresql.org/)
+- To use this project, make sure to install [postgress](https://www.postgresql.org/)
 - Create a new database with SQL terminal, pgADdmin, or you terminal ([how to this here](https://www.postgresql.org/docs/current/sql-createdatabase.html))
-- Then use command in schema.sql to create the database structure (tables and columns)
+- Then use the command in schema.sql to create the database structure (tables and columns)
 - use data.sql to populate data into you database
-- use queries.sql to get some information about entries in database
+- use queries.sql to get some information about entries in the database
 
 ### Usage
 
