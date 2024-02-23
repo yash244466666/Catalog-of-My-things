@@ -104,9 +104,9 @@ Clone this repository to your desired folder:
 Install this project with:
 
 - To use this project, make sure to install [postgress](https://www.postgresql.org/)
-- Create a new database with SQL terminal, pgADdmin, or you terminal ([how to this here](https://www.postgresql.org/docs/current/sql-createdatabase.html))
+- Create a new database with SQL terminal, pgADdmin, or your terminal ([how to this here](https://www.postgresql.org/docs/current/sql-createdatabase.html))
 - Then use the command in schema.sql to create the database structure (tables and columns)
-- use data.sql to populate data into you database
+- use data.sql to populate data into your database
 - use queries.sql to get some information about entries in the database
 
 ### Usage
@@ -117,7 +117,7 @@ Install this project with:
   ruby main.rb
 ```
 
-- You can you own code, create your own tables, columns, and queries using this template
+- You can you own code, and create your own tables, columns, and queries using this template
 
 ### Run tests
 
