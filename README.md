@@ -88,7 +88,7 @@ To run this project, you need:
   gem install rspec
 ```
 
-- To have postgreSQL installed (to create the tables in `database` folder)
+- To have postgreSQL installed (to create the tables in the `database` folder)
 
 ### Setup
 
