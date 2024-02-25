@@ -117,7 +117,7 @@ Install this project with:
   ruby main.rb
 ```
 
-- You can you own code, and create your own tables, columns, and queries using this template
+- You can your own code and create your tables, columns, and queries using this template
 
 ### Run tests
 
