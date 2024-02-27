@@ -119,7 +119,7 @@ Install this project with:
 
 - You can your own code and create your tables, columns, and queries using this template
 
-### Run tests
+### Run testing 
 
 To run tests, run the following command:
 
