@@ -50,7 +50,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **Save list of items in SQL tables**
-- **Save list of items in json files accessible by console**
+- **Save list of items in JSON files accessible by console**
 - **Interactive console app**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -117,7 +117,7 @@ Install this project with:
   ruby main.rb
 ```
 
-- You can your own code and create your tables, columns, and queries using this template
+- You can use your own code and create your tables, columns, and queries using this template
 
 ### Run testing 
 
