@@ -168,7 +168,7 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Link sql database and json files**
+- [ ] **Link SQL database and JSON files**
 - [ ] **Add more tables to SQL database**
 - [ ] **Host the project online**
 
