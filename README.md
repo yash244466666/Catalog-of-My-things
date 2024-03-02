@@ -151,6 +151,7 @@ Example:
 - GitHub: [Yash](https://github.com/yash244466666)
 - LinkedIn: [Yash Solo](https://www.linkedin.com/in/yash-solo)
 - Twitter: [Yash Solo](https://twitter.com/yash_solo000)
+- Email: info@yashcodes.com
 
 👨‍🚀 **Sabi Mantock**
 
