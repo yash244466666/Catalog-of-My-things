@@ -152,6 +152,7 @@ Example:
 - LinkedIn: [Yash Solo](https://www.linkedin.com/in/yash-solo)
 - Twitter: [Yash Solo](https://twitter.com/yash_solo000)
 - Email: info@yashcodes.com
+- Website: https://www.yashcodes.com
 
 👨‍🚀 **Sabi Mantock**
 
