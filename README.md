@@ -125,7 +125,7 @@ To run tests, run the following command:
 
 ```sh
   rspec spec
-```
+```.
 
 ### Deployment
 
